@@ -1,0 +1,58 @@
+@Metadata.layer: #CORE
+@UI:{ headerInfo:{typeName: 'State',
+                    typeNamePlural: 'States',
+                    title:{ type: #STANDARD , value: 'StateId'} },
+                    presentationVariant: [{ sortOrder: [{by: 'StateId', direction: #ASC }]  }] }
+annotate entity ZVK_C_STATE with
+{
+  @UI.facet: [{
+           id: 'State',
+           purpose: #STANDARD,  //Based on our requirement we will choose the purpose(#FILTER,#HEADER, #QUICK_VIEW,#QUICK_CREATE,#STANDARD )
+           type: #IDENTIFICATION_REFERENCE,
+           label: 'State',
+           position: 10
+          },
+
+          {
+          id: 'District',
+          purpose: #STANDARD,
+          type: #LINEITEM_REFERENCE, //you are providing LINEITEM_REFERENCE but from where it needs to get( from Target element it will get)
+          label: 'District',
+          targetElement: '_District',
+          position: 20
+          }
+          ]
+  @UI.hidden: true
+  StateUuid;
+  @UI.lineItem: [{ position: 10, importance: #HIGH,label: 'StateId' }]
+  @UI.identification: [{ position: 10, importance: #HIGH,label: 'StateId'  }]
+  StateId;
+  @UI.lineItem: [{ position: 20, importance: #HIGH, label: 'StateCode'}]
+  @UI.identification: [{ position: 20, importance: #HIGH, label: 'StateCode' }]
+  StateCode;
+  @UI.lineItem: [{ position: 30, importance: #HIGH, label: 'StateName' }]
+  @UI.identification: [{ position: 30, importance:  #HIGH, label: 'StateName' }]
+  StateName;
+  @UI.lineItem: [{ position: 40,importance: #HIGH,label: 'StateAllocDateTime' }]
+  @UI.identification: [{ position:40, importance: #HIGH,label: 'StateAllocDateTime' }]
+  StateAllocDateTime;
+  @UI.lineItem: [{ position: 50, importance: #HIGH,label: ' TotalAllocatedFunds' }]
+  @UI.identification: [{ position: 50, importance: #HIGH,label: ' TotalAllocatedFunds' }]
+  TotalAllocatedFunds;
+  @UI.lineItem: [{ position: 60, importance: #HIGH,label: 'AvailableFunds'  }]
+  @UI.identification: [{ position: 60, importance: #HIGH,label: 'AvailableFunds' }]
+  AvailableFunds;
+  @UI.lineItem: [{ position: 70, importance: #HIGH,label: 'CurrencyCode' }]
+  @UI.identification: [{ position: 70, importance: #HIGH,label: 'CurrencyCode' }]
+  CurrencyCode;
+  @UI.lineItem: [{ position: 80, importance: #LOW,label: 'BudgetAvailableStatus'  }]
+  @UI.identification: [{ position: 80, importance: #HIGH,label: 'BudgetAvailableStatus' }]
+  BudgetAvailableStatus;
+  @UI.lineItem: [{ position: 90, importance: #LOW,label: 'LocalLastChangedAt' }]
+  @UI.identification: [{ position: 90, importance: #HIGH,label: 'LocalLastChangedAt' }]
+  LocalLastChangedAt;
+  @UI.lineItem: [{ position: 100, importance: #LOW,label: 'LastChangedAt' }]
+  @UI.identification: [{ position: 100, importance: #HIGH,label: 'LastChangedAt'}]
+  LastChangedAt;
+  /* Associations */
+}

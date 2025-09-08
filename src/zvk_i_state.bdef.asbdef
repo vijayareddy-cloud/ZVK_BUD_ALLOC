@@ -1,0 +1,55 @@
+managed implementation in class zbp_vk_i_state unique;
+strict ( 2 );
+
+define behavior for ZVK_I_STATE alias State
+persistent table zvk_state_bu_all
+lock master
+authorization master ( instance )
+etag master LocalLastChangedAt
+{
+  create ( authorization : global );
+  update;
+  delete;
+  field ( numbering : managed, readonly ) StateUuid;
+  association _District { create; }
+
+  mapping for zvk_state_bu_all
+    {
+      //    CDS View alias name = Database table field name;
+      StateUuid             = state_uuid;
+      StateId               = state_id;
+      StateCode             = state_code;
+      StateName             = state_name;
+      StateAllocDateTime    = state_alloc_date_time;
+      TotalAllocatedFunds   = total_allocated_funds;
+      AvailableFunds        = available_funds;
+      CurrencyCode          = currency_code;
+      BudgetAvailableStatus = budget_available_status;
+      LocalLastChangedAt    = local_last_changed_at;
+      LastChangedAt         = last_changed_at;
+    }
+}
+
+define behavior for ZVK_I_DISTRICT alias District
+persistent table zvk_distr_bu_all
+lock dependent by _State
+authorization dependent by _State
+etag master LocalLastChangedAt
+{
+  update;
+  delete;
+  field ( numbering : managed, readonly ) DistrictUuid;
+  field ( readonly ) ParentUuid;
+  association _State;
+  mapping for zvk_distr_bu_all
+    {
+      //    CDS View alias name   = Database table field name;
+      DistrictUuid       = district_uuid;
+      ParentUuid         = parent_uuid;
+      DistrictCode       = district_code;
+      DistrictName       = district_name;
+      TotalUsedFunds     = total_used_funds;
+      CurrencyCode       = currency_code;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+}

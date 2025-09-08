@@ -1,0 +1,19 @@
+projection;
+strict ( 2 );
+
+define behavior for ZVK_C_STATE alias State
+{
+  use create;
+  use update;
+  use delete;
+
+  use association _District { create; }
+}
+
+define behavior for ZVK_C_DISTRICT alias District
+{
+  use update;
+  use delete;
+
+  use association _State;
+}
