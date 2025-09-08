@@ -18,7 +18,9 @@ as projection on ZVK_I_STATE
     AvailableFunds,
     CurrencyCode,
     BudgetAvailableStatus,
+     @Semantics.systemDateTime.localInstanceLastChangedAt: true
     LocalLastChangedAt,
+    @Semantics.systemDateTime.lastChangedAt: true
     LastChangedAt,
     /* Associations */
     _District:redirected to composition child ZVK_C_DISTRICT
