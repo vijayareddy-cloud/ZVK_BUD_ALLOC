@@ -1,0 +1,38 @@
+@Metadata.layer:#CORE
+@UI:{ headerInfo:{typeName: 'District',
+                    typeNamePlural: 'Districts',
+                    title:{ type: #STANDARD , value: 'DistrictCode'} },
+                    presentationVariant: [{ sortOrder: [{by: 'DistrictCode', direction: #ASC }]  }] }
+annotate entity ZVK_C_DISTRICT with
+{
+  @UI.facet: [{
+             id: 'District',
+             purpose: #STANDARD,  //Based on our requirement we will choose the purpose(#FILTER,#HEADER, #QUICK_VIEW,#QUICK_CREATE,#STANDARD )
+             type: #IDENTIFICATION_REFERENCE,
+             label: 'District',
+             position: 10
+            } ]
+
+  @UI.hidden: true
+  DistrictUuid;
+  @UI.lineItem: [{ position: 10, importance: #HIGH,label: 'ParentUuid' }]
+  @UI.identification: [{ position: 10, importance: #HIGH,label: 'ParentUuid'  }]
+  ParentUuid;
+  @UI.lineItem: [{ position: 20, importance: #HIGH, label: 'DistrictCode'}]
+  @UI.identification: [{ position: 20, importance: #HIGH, label: 'DistrictCode' }]
+  DistrictCode;
+  @UI.lineItem: [{ position: 30, importance: #HIGH, label: 'DistrictName' }]
+  @UI.identification: [{ position: 30, importance:  #HIGH, label: 'DistrictName' }]
+  DistrictName;
+  @UI.lineItem: [{ position: 40,importance: #HIGH,label: 'TotalUsedFunds' }]
+  @UI.identification: [{ position:40, importance: #HIGH,label: 'TotalUsedFunds' }]
+  TotalUsedFunds;
+  @UI.lineItem: [{ position: 50, importance: #HIGH,label: 'CurrencyCode' }]
+  @UI.identification: [{ position: 50, importance: #HIGH,label: 'CurrencyCode' }]
+  CurrencyCode;
+  @UI.lineItem: [{ position: 90, importance: #LOW,label: 'LocalLastChangedAt' }]
+  @UI.identification: [{ position: 90, importance: #HIGH,label: 'LocalLastChangedAt' }]
+  LocalLastChangedAt;
+
+  /* Associations */
+}

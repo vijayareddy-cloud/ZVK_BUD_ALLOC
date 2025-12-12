@@ -1,4 +1,5 @@
 @EndUserText.label: 'Service Definition'
 define service ZVK_C_SD {
   expose ZVK_C_STATE;
+  expose ZVK_C_DISTRICT;
 }
